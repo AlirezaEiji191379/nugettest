@@ -1,0 +1,12 @@
+name: create nuget and push to nuget.org
+
+on:
+  push: 
+    branches:
+      - master
+
+jobs:
+  
+  BuildAndTest:
+    name: build and test
+    uses: ./.github/workflows/BuildTestWorkflow.yml
