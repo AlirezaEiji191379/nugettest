@@ -11,7 +11,9 @@ runs:
   
   steps:
     - name: Install GitVersion
-      uses: GitTools/actions/gitversion/setup@v0.9.7
+      uses: GitTools/actions/gitversion/setup@vv1.2.0
+      with:
+        versionSpec: '5.x'
 
     - name: Get Version
       id: gitversion
