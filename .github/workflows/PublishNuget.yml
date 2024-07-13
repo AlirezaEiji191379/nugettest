@@ -3,12 +3,13 @@ name: pack and publish nuget
 on: 
   push:
     
-
 jobs:
+  
   buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
         
       - name: build and test
-        uses: ./.github/workflows/actions/action.yml
-        
+        uses: ./.github/actions/build-and-test/
