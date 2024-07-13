@@ -1,20 +1,31 @@
 name: build and test
+description: the action file for building and testing dotnet project
+
 runs:
   using: 'composite'
   steps:
+    # install dotnet the latest 8 version
     - name: set up dotnet
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-
+    
+    # restore dependencies
     - name: nuget restore
       run: dotnet restore --no-cache
       shell: bash
-      
+    
+    # build the project in release mode
     - name: build
       run: dotnet build --no-restore --configuration Release
       shell: bash
-      
+    
+    # run unit tests
     - name: run tests
       run: dotnet test -c Release --no-restore --verbosity normal
+      shell: bash
+
+    - name: Get current branch name
+      id: get_branch
+      run: echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
       shell: bash
