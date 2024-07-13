@@ -1,0 +1,12 @@
+name: pack and publish nuget
+
+on: 
+  push:
+    
+
+jobs:
+  buildAndDeploy:
+    steps:
+      - name: build and test
+        uses: ./.github/workflows/BuildTestWorkflow
+        
