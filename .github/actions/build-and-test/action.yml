@@ -6,9 +6,12 @@ runs:
   steps:
     # install dotnet the latest 8 version
     - name: set up dotnet
+      run: echo "installing .net core sdk"
+      shell: bash
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
+      
     
     # restore dependencies
     - name: nuget restore
@@ -23,9 +26,4 @@ runs:
     # run unit tests
     - name: run tests
       run: dotnet test -c Release --no-restore --verbosity normal
-      shell: bash
-
-    - name: Get current branch name
-      id: get_branch
-      run: echo "Current branch is ${{ env.GITHUB_REF }}"
       shell: bash
