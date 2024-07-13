@@ -1,15 +1,19 @@
-namespace TestNugetTests;
+using FluentAssertions;
+using TestNuget;
 
-public class Tests
+namespace TestProject1;
+
+public class UnitTest1
 {
-    [SetUp]
-    public void Setup()
+    [Fact]
+    public void AddTest()
     {
-    }
-
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
+        // Arrange
+        int a = 1;
+        int b = 2;
+        // Act
+        var result = AdderUtil.Add(a, b);
+        // Assert
+        result.Should().Be(3);
     }
 }
