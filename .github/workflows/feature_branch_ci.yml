@@ -1,11 +1,17 @@
-name: pack and publish nuget
+name: build and test feature branches and pull requests on master
 
 on: 
   push:
-    
+    branches-ignore:
+      - master
+  
+  pull_request: 
+    branches:
+      - master
+
 jobs:
   
-  buildAndDeploy:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository

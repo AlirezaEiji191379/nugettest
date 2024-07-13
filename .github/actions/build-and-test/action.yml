@@ -4,26 +4,19 @@ description: the action file for building and testing dotnet project
 runs:
   using: 'composite'
   steps:
-    # install dotnet the latest 8 version
-    - name: set up dotnet
-      run: echo "installing .net core sdk"
-      shell: bash
+    - name: set up dotnet core sdk
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
       
-    
-    # restore dependencies
-    - name: nuget restore
+    - name: restoring dependencies
       run: dotnet restore --no-cache
       shell: bash
     
-    # build the project in release mode
-    - name: build
+    - name: build project
       run: dotnet build --no-restore --configuration Release
       shell: bash
     
-    # run unit tests
-    - name: run tests
+    - name: run unit tests
       run: dotnet test -c Release --no-restore --verbosity normal
       shell: bash
