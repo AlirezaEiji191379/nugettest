@@ -18,10 +18,6 @@ runs:
     - name: Determine Version
       id: gitVersion
       uses: gittools/actions/gitversion/execute@v1.2.0
-      with:
-        overrideConfig: |
-          update-build-number=true
-          next-version=1.0.0
           
     - name: pack the nuget package
       run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitVersion.outputs.fullSemVer }}
