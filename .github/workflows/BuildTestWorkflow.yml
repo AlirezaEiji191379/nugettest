@@ -12,10 +12,11 @@ name: build and test
 jobs:
   BuildAndTest:
 
-   # runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     
     steps:
-
+      - name: checkout repository
+        uses: actions/checkout@v4
       
       - name: set up dotnet
         uses: actions/setup-dotnet@v4
