@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.github\actions\build-and-test\action.yml = .github\actions\build-and-test\action.yml
 		.github\workflows\feature_branch_ci.yml = .github\workflows\feature_branch_ci.yml
+		.github\workflows\master_ci.yml = .github\workflows\master_ci.yml
+		.github\actions\deploy\action.yml = .github\actions\deploy\action.yml
 	EndProjectSection
 EndProject
 Global

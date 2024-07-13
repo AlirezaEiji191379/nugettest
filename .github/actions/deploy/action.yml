@@ -1,0 +1,23 @@
+name: pack and publish nuget
+description: action for pack and publish nuget to nuget repository
+
+inputs:
+  nuget_api_key:
+    required: true
+    description: "nuget.org api key for publishing the nuget package"
+
+runs:
+  using: 'composite'
+  
+  steps:
+    
+    - name: pack the nuget package
+      run: dotnet pack --configuration Release --no-build --output ./nupkg
+      shell: bash
+      
+    - name: publish nuget package
+      env: 
+        Nuget_Api_Key:
+          
+      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ inputs.nuget_api_key }} --source https://api.nuget.org/v3/index.json
+      shell: bash
