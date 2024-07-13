@@ -15,13 +15,12 @@ runs:
       with:
         versionSpec: '5.x'
 
-    - name: Get Version
-      id: gitversion
-      run: echo "::set-output name=version::$(gitversion /output json /showvariable NuGetVersionV2)"
-      shell: bash
+    - name: Determine Version
+      id: gitVersion
+      uses: gittools/actions/gitversion/execute@v1.2.0
 
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitversion.outputs.version }}
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitVersion.outputs.version }}
       shell: bash
 
     - name: publish nuget package
