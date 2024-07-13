@@ -19,7 +19,7 @@ runs:
       shell: bash
 
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitversion.outputs.version }}
       shell: bash
 
     - name: publish nuget package
