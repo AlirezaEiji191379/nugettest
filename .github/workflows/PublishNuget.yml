@@ -10,5 +10,5 @@ jobs:
     steps:
         
       - name: build and test
-        uses: ./.github/workflows/BuildTestWorkflow.yml
+        uses: ./.github/workflows/actions/BuildTestWorkflow.yml
         
