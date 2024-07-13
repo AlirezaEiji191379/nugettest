@@ -10,12 +10,21 @@ runs:
   using: 'composite'
   
   steps:
-    - name: Set VERSION_NUMBER variable from tag
-      run: echo "VERSION_NUMBER=${GITHUB_REF_NAME/v/}" >> $GITHUB_ENV
-      shell: bash
+    - name: Install GitVersion
+      uses: GitTools/actions/gitversion/setup@v1.2.0
+      with:
+        versionSpec: '5.x'
 
+    - name: Determine Version
+      id: gitVersion
+      uses: gittools/actions/gitversion/execute@v1.2.0
+      with:
+        overrideConfig: |
+          update-build-number=false
+          next-version=1.2.0
+          
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${VERSION_NUMBER}
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitVersion.outputs.version }}
       shell: bash
 
     - name: publish nuget package
