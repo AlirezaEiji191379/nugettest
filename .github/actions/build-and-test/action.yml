@@ -27,5 +27,5 @@ runs:
 
     - name: Get current branch name
       id: get_branch
-      run: echo "Current branch is ${{ env.GITHUB_REF#refs/heads/ }}"
+      run: echo "Current branch is ${{ env.GITHUB_REF }}"
       shell: bash
