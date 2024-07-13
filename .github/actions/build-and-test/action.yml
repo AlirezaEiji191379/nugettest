@@ -9,10 +9,12 @@ runs:
 
     - name: nuget restore
       run: dotnet restore --no-cache
-
+      shell: bash
+      
     - name: build
       run: dotnet build --no-restore --configuration Release
-
+      shell: bash
+      
     - name: run tests
       run: dotnet test -c Release --no-restore --verbosity normal
-      
+      shell: bash
