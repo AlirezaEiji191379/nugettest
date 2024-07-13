@@ -8,9 +8,6 @@ jobs:
   buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-        
       - name: build and test
-        uses: ./.github/workflows/BuildTestWorkflow
+        uses: ./.github/workflows/BuildTestWorkflow.yml
         
