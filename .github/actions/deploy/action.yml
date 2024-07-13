@@ -24,7 +24,7 @@ runs:
           next-version=1.2.0
           
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitVersion.outputs.version }}
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.gitVersion.outputs.fullSemVer }}
       shell: bash
 
     - name: publish nuget package
