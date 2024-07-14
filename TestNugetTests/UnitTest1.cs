@@ -16,5 +16,17 @@ public class UnitTest1
         // Assert
         result.Should().Be(3);
     }
+
+    [Fact]
+    public void MultiplyTest()
+    {
+        // Arrange
+        int a = 2;
+        int b = 3;
+        // Act
+        var result = AdderUtil.multiply(a, b);
+        // Assert
+        result.Should().Be(6);
+    }
     
 }
