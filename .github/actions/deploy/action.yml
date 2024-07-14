@@ -15,19 +15,19 @@ runs:
       uses: thenativeweb/get-next-version@main
 
     - name: create tag
-      if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
+      #if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
       run: |
         git tag v${{ steps.get_next_version.outputs.version }}
         git push origin v${{ steps.get_next_version.outputs.version }}
       shell: bash
 
     - name: pack the nuget package
-      if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
+      #if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
       run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.get_next_version.outputs.version }}
       shell: bash
 
     - name: publish nuget package
-      if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
+      #if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
       run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ inputs.nuget_api_key }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       shell: bash
       
