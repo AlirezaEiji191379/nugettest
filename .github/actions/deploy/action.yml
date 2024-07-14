@@ -8,6 +8,7 @@ inputs:
 runs:
   using: 'composite'
   
+  
   steps:
     - name: Generate Version
       id: get_next_version
