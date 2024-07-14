@@ -20,7 +20,7 @@ runs:
         git tag v${{ steps.get_next_version.outputs.version }}
         git push origin v${{ steps.get_next_version.outputs.version }}
       shell: bash
-      
+
     - name: pack the nuget package
       run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.get_next_version.outputs.version }}
       shell: bash

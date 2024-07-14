@@ -1,7 +1,7 @@
 name: build, test, pack and publish nuget package on nuget repository
 
 on:
-  push: 
+  push:
     branches:
       - master
 
@@ -16,7 +16,7 @@ jobs:
 
       - name: build and test
         uses: ./.github/actions/build-and-test/
-        
+
       - name: deploy
         uses: ./.github/actions/deploy/
         with:
