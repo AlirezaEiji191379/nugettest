@@ -26,7 +26,7 @@ public class UnitTest1
         // Act
         var result = AdderUtil.multiply(a, b);
         // Assert
-        result.Should().Be(7);
+        result.Should().Be(6);
     }
     
 }
