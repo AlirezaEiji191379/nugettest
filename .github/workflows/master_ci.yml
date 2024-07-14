@@ -12,22 +12,20 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: build and test
         uses: ./.github/actions/build-and-test/
         
-      - name: calculate version
-        id: calculate-version
-        uses: bitshifted/git-auto-semver@v1
+      - name: Get next version
+        id: get_next_version
+        uses: thenativeweb/get-next-version@main
         with:
-          main_branch: master
-          create_tag: true
+          prefix: 'v' # optional, defaults to ''
+
+      - name: Show the next version
+        run: |
+          echo ${{ steps.get_next_version.outputs.version }}
+          echo ${{ steps.get_next_version.outputs.hasNextVersion }}
       
-      - name: show version
-        run: echo ${{ steps.calculate-version.outputs.version-string }}
-      
-      - name: deploy
-        uses: ./.github/actions/deploy/
-        with: 
-          nuget_api_key: ${{ secrets.NUGET_API_KEY }}
-          package_version: ${{ steps.calculate-version.outputs.version-string }}
