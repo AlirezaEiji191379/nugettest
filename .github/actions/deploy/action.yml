@@ -17,7 +17,7 @@ runs:
         main_branch: master
           
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.calculate-version.outputs.version-string }
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.calculate-version.outputs.version-string }}
       shell: bash
 
     - name: publish nuget package
