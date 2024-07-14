@@ -15,4 +15,7 @@ jobs:
           fetch-depth: 0
         
       - name: show and log
-        run: echo ${{ github.event_name }} 
+        run: echo ${{ github.event_name }}
+      
+      - name: show and log1
+        run: echo ${{ github.base_ref }} 
