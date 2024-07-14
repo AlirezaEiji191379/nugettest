@@ -13,15 +13,8 @@ runs:
   using: 'composite'
   
   steps:
-    - name: calculate version
-      id: calculate-version
-      uses: bitshifted/git-auto-semver@v1
-      with: 
-        main_branch: master
-        create_tag: true
-          
     - name: pack the nuget package
-      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.calculate-version.outputs.version-string }}
+      run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ inputs.package_version }}
       shell: bash
 
     - name: publish nuget package
