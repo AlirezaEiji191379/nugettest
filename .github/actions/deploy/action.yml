@@ -5,7 +5,6 @@ inputs:
   nuget_api_key:
     required: true
     description: "nuget.org api key for publishing the nuget package"
-
 runs:
   using: 'composite'
   
