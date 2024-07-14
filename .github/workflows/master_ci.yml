@@ -17,9 +17,16 @@ jobs:
 
       - name: build and test
         uses: ./.github/actions/build-and-test/
+        
+      - name: calculate version
+        id: calculate-version
+        uses: bitshifted/git-auto-semver@v1
+        with:
+          main_branch: master
+          create_tag: true
       
       - name: deploy
         uses: ./.github/actions/deploy/
         with: 
-          nuget_api_key:
-            ${{ secrets.NUGET_API_KEY }}
+          nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+          package_version: ${{ steps.calculate-version.outputs.version-string }}

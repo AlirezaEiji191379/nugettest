@@ -5,6 +5,9 @@ inputs:
   nuget_api_key:
     required: true
     description: "nuget.org api key for publishing the nuget package"
+  package_version:
+    required: true
+    description: "the version that was calculated"
 
 runs:
   using: 'composite'
@@ -15,6 +18,7 @@ runs:
       uses: bitshifted/git-auto-semver@v1
       with: 
         main_branch: master
+        create_tag: true
           
     - name: pack the nuget package
       run: dotnet pack --configuration Release --no-build --output ./nupkg /p:PackageVersion=${{ steps.calculate-version.outputs.version-string }}
