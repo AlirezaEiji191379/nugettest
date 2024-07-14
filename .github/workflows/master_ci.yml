@@ -17,14 +17,9 @@ jobs:
       - name: build and test
         uses: ./.github/actions/build-and-test/
         
-      - name: Get next version
-        id: get_next_version
-        uses: thenativeweb/get-next-version@main
+      - name: deploy
+        uses: ./.github/actions/deploy/
         with:
-          prefix: 'v' # optional, defaults to ''
-
-      - name: Show the next version
-        run: |
-          echo ${{ steps.get_next_version.outputs.version }}
-          echo ${{ steps.get_next_version.outputs.hasNextVersion }}
-      
+          nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+          package_version: ${{ steps.calculate-version.outputs.version-string }}
+          
