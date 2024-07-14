@@ -28,3 +28,4 @@ runs:
     - name: publish nuget package
       run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ inputs.nuget_api_key }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       shell: bash
+      
