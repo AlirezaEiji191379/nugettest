@@ -15,8 +15,5 @@ jobs:
           fetch-depth: 0
         
       - name: show and log
-        if: ${{ github.event_name == 'push' }} 
+        if: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
         run: echo mamad
-      
-      - name: show and log1
-        run: echo ${{ github.ref_name }} 
